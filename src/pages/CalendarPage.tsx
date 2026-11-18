@@ -49,59 +49,30 @@ export const CalendarPage = () => {
   const capitalizedMonth = monthName.charAt(0).toUpperCase() + monthName.slice(1);
 
   return (
-    <div className="max-w-2xl mx-auto">
-      <div className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-xs">
-        <div className="mb-6 pb-4 border-b border-gray-100">
-          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
-            {capitalizedMonth}
-          </h1>
-        </div>
+    <div className="bg-white border border-gray-200 rounded-lg p-5 max-w-lg">
+      <h1 className="text-lg font-semibold text-gray-900 mb-4">{capitalizedMonth}</h1>
 
-        <div className="grid grid-cols-7 gap-2 mb-2">
-          {["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"].map((name) => (
-            <div
-              key={name}
-              className="text-center text-xs font-semibold uppercase tracking-wider py-1.5 text-gray-500"
-            >
-              {name}
-            </div>
-          ))}
-        </div>
+      <div className="grid grid-cols-7 gap-1 text-center text-xs font-medium text-gray-500 mb-2">
+        {["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"].map((name) => (
+          <div key={name} className="py-1">{name}</div>
+        ))}
+      </div>
 
-        <div className="grid grid-cols-7 gap-2">
-          {cells.map((cell, idx) => {
-            if (cell.isToday) {
-              return (
-                <div
-                  key={idx}
-                  className="aspect-square flex items-center justify-center rounded-xl text-sm font-bold bg-blue-600 text-white shadow-xs"
-                >
-                  {cell.day}
-                </div>
-              );
-            }
-
-            if (!cell.isCurrentMonth) {
-              return (
-                <div
-                  key={idx}
-                  className="aspect-square flex items-center justify-center rounded-xl text-sm font-medium text-gray-400 bg-gray-50/60"
-                >
-                  {cell.day}
-                </div>
-              );
-            }
-
-            return (
-              <div
-                key={idx}
-                className="aspect-square flex items-center justify-center rounded-xl text-sm font-medium text-gray-800"
-              >
-                {cell.day}
-              </div>
-            );
-          })}
-        </div>
+      <div className="grid grid-cols-7 gap-1 text-center text-sm">
+        {cells.map((cell, idx) => (
+          <div
+            key={idx}
+            className={`h-9 flex items-center justify-center rounded ${
+              cell.isToday
+                ? "bg-blue-600 text-white font-semibold"
+                : !cell.isCurrentMonth
+                ? "text-gray-300"
+                : "text-gray-700"
+            }`}
+          >
+            {cell.day}
+          </div>
+        ))}
       </div>
     </div>
   );

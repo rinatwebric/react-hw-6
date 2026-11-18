@@ -7,18 +7,16 @@ interface CardProps {
 
 export function Card({ layout }: CardProps) {
   return (
-    <article className="flex flex-col gap-3 border border-gray-200 rounded-xl p-5 bg-white shadow-xs hover:shadow-md hover:border-blue-200 transition-all duration-200">
-      <h3 className="font-semibold text-base text-gray-900 leading-snug">
-        {layout.title}
-      </h3>
-      <p className="text-sm text-gray-600 line-clamp-3 leading-relaxed">
-        {layout.description}
-      </p>
+    <article className="h-full bg-white border border-gray-200 rounded-lg p-4 flex flex-col justify-between gap-3 hover:border-gray-300">
+      <div>
+        <h3 className="font-semibold text-gray-900">{layout.title}</h3>
+        <p className="text-sm text-gray-600 mt-1">{layout.description}</p>
+      </div>
       <Link
         to={`/layouts/${layout.id}`}
-        className="mt-auto block text-center py-2 px-3 text-sm font-medium rounded-lg bg-gray-50 hover:bg-blue-600 hover:text-white text-gray-700 border border-gray-200 hover:border-blue-600 transition-colors"
+        className="mt-auto block text-center border border-gray-200 bg-gray-50 hover:bg-gray-100 rounded-md py-1.5 text-sm font-medium text-gray-700"
       >
-        Подробнее →
+        Подробнее
       </Link>
     </article>
   );
